@@ -1,0 +1,29 @@
+<div
+    [attr.aria-labelledby]="'Kurs wymiany z' + data?.code + 'na PLN'"
+    role="article"
+    class="container"
+    tabindex="0"
+>
+    <div class="container__header">
+        <img class="container__header__flag" [src]="flagData?.flag" alt="" aria-hidden="true">
+        <img class="container__header__flag right" [src]="polandFlag.flag" alt="" aria-hidden="true">
+
+        <span role="text" class="container__header__currency-code">
+            {{ data?.code }} - PLN
+        </span>
+    </div>
+
+    <div class="container__details">
+        <span role="text" class="container__details__name">
+            {{ data?.currency }}
+        </span>
+        <span 
+            [attr.aria-labelledby]="'Nazwa waluty' + data?.currency"
+            role="text"
+            class="container__details__rate"
+            tabindex="0"
+        >
+            {{ data?.mid }}
+        </span>
+    </div>
+</div>

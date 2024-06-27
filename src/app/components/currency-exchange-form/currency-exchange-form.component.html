@@ -1,0 +1,54 @@
+<div role="form" class="container">
+    <span class="container__title">Wybierz waluty i sprawdź kurs</span>
+
+    <!--TODO: Te elementy mozna wrzucić do osobnego komponentu -->
+    <div role="form" class="container__currency">
+        <div class="container__currency__select">
+            <select [(ngModel)]="fromCurrencyCode" [disabled]="true">
+              <option *ngFor="let rate of _currencies" [value]="rate.code">{{ rate.code }}</option>
+            </select>
+        </div>
+        <div class="container__currency__right-column">
+            <label for="amountCurrency" class="container__currency__right-column__title">Mam</label>
+            <input 
+                [formControl]="amountFormControl"
+                id="amountCurrency"
+                name="amountCurrency"
+                type="number"
+                placeholder="0"
+                aria-describedby="amountCurrencyLabel"
+            >
+            <span id="amountCurrencyLabel" style="display:none;">Wprowadź kwote, którą chcesz wymienić</span>
+        </div>
+    </div>
+
+    <div class="container__currency">
+        <div class="container__currency__select">
+            <select 
+                [(ngModel)]="toCurrencyCode"
+                (ngModelChange)="convertCurrency()"
+                aria-describedby="secondCurrencyDesc"
+            >
+              <option
+                *ngFor="let rate of _currencies"
+                [value]="rate.code"
+                [attr.aria-label]="rate.currency"
+              >
+                {{ rate.code }}
+              </option>
+            </select>
+            <span id="secondCurrencyDesc" style="display:none;">Wybierz docelową walutę</span>
+        </div>
+        <div class="container__currency__right-column">
+            <label for="exchangeRateValue" class="container__currency__right-column__title">Otrzymasz</label>
+            <input
+                [value]="result"
+                [readOnly]="true"
+                id="exchangeRateValue"
+                name="exchangeRateValue"
+                aria-describedby="exchangeRateValueLabel"
+            >
+            <span id="exchangeRateValueLabel" style="display:none;">Kwota, którą otrzymasz po wymianie: {{result}} {{ toCurrencyCode }}</span>
+        </div>
+    </div>
+</div>

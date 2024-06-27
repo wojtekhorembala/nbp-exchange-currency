@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="container__wrapper">
+        <app-currency-exchange-form [currencies]="currenciesRatesToday"></app-currency-exchange-form>
+
+        <div role="form" class="container__filter-date">
+            <label for="exchangeRateDate">Kursy w dniu:</label>
+            <input 
+                [formControl]="filterDateFormControl"
+                [max]="maxDateFilter"
+                type="date"
+                id="exchangeRateDate"
+                name="exchangeRateDate"
+                aria-describedby="exchangeRateDateLabel"
+            >
+            <span id="exchangeRateDateLabel" style="display:none;">Wprowadź datę w formacie DD.MM.YYYY</span>
+        </div>
+
+        <div role="grid" class="container__list">
+            <ng-container *ngIf="noDataCurrenciesError; else hasData">
+                <span class="container__list__error">NO DATA ERROR</span>
+            </ng-container>
+
+            <ng-template #hasData>
+                <app-currency 
+                    *ngFor="let item of (currencies$ | async)?.rates; trackBy: trackByCurrency; let index = index"
+                    [data]="item"
+                ></app-currency>
+            </ng-template>
+        </div>
+    </div>
+</div>

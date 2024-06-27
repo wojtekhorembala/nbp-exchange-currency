@@ -1,0 +1,55 @@
+@use 'src/styles/var.scss';
+
+.container {
+    background-color: #fafafa;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 15px;
+
+    &__header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        &__flag {
+            height: 30px;
+            border-radius: 5px;
+
+            &.right {
+                margin-left: -2px;
+            }
+        }
+        &__currency-code {
+            font-family: var.$monst;
+            font-size: .8rem;
+            color: black;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 20px;
+        }
+    }
+    &__details {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+
+        &__name,
+        &__rate {
+            font-family: var.$monst;
+            color: black;
+        }
+        &__name {        
+            font-size: .8rem;
+            font-weight: 600;
+        }
+        &__rate {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+        }
+    }
+}
